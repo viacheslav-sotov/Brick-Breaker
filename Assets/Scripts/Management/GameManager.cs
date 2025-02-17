@@ -10,10 +10,7 @@ public class GameManager : MonoBehaviour
 
 
     //Methods
-    public void ResetScore()
-    {
-        playerScore = 0;
-    }
+
 
 
     //Accessors

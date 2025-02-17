@@ -12,6 +12,8 @@ public class BallScript : MonoBehaviour
 
     [SerializeField] protected Vector3 startForce = Vector3.one;
 
+    [SerializeField] protected int damage = 1;
+
     //Awake
     //Start
     //OnEnable
@@ -43,9 +45,18 @@ public class BallScript : MonoBehaviour
 
         nV3.x = Mathf.Clamp(hV3.x, -worldVelocity, worldVelocity);
         nV3.y = Mathf.Clamp(hV3.y, -worldVelocity, worldVelocity);
-        nV3.z = 0;
+        nV3.z = Mathf.Clamp(hV3.z, -worldVelocity, worldVelocity);
 
         rb.velocity = nV3;
     }
     
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BreakableBrick bb = collision.gameObject.GetComponent<BreakableBrick>();
+        if (bb != null)
+        {
+            bb.Break(damage);
+        }
+    }
 }
